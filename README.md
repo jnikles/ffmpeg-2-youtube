@@ -9,4 +9,4 @@ You would need the silence.wav as an audio stream for youtube to accept your str
 ``` export YOUTUBE_KEY="xxx-xxx-xxx" ```
 
 - Adjust the path to the audio file (will error otherwise)
-- ./stream.sh
+- ./run.sh
