@@ -5,7 +5,7 @@ QUAL="ultrafast"
 YOUTUBE_URL="rtmp://a.rtmp.youtube.com/live2"
 
 SOURCE="/dev/video0"              # Source UDP
-AUDIO_SOURCE="/home/pi/music/silence.wav"
+AUDIO_SOURCE="/home/pi/stream/music/silence.wav"
 FSIZE=20
 FCOLOR=white
 FFILE='/usr/share/fonts/dejavu/DejaVuSansMono-Bold.ttf'
