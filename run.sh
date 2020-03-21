@@ -5,17 +5,18 @@ QUAL="ultrafast"
 YOUTUBE_URL="rtmp://a.rtmp.youtube.com/live2"
 
 SOURCE="/dev/video0"              # Source UDP
-AUDIO_SOURCE="/home/pi/stream/music/silence.wav"
+AUDIO_SOURCE="/home/pi/ffmpeg-2-youtube/music/silence.wav"
 FSIZE=20
 FCOLOR=white
 FFILE='/usr/share/fonts/dejavu/DejaVuSansMono-Bold.ttf'
 LTIME=drawtext="fontsize=$FSIZE:fontfile=$FFILE:fontcolor=$FCOLOR:text='%{localtime\:%X}':x=10:y=10"
 
-
 ffmpeg \
-    -i "$SOURCE" -deinterlace \
-    -stream_loop -1 -i "$AUDIO_SOURCE" -filter:a "volume=0.5" \
-    -vcodec libx264 -pix_fmt yuv420p -preset $QUAL -s 384*216 -r $FPS -g $(($FPS * 4)) -b:v $VBR \
+    -thread_queue_size 512 \
+    -f v4l2 -input_format yuyv422 \
+    -i "$SOURCE" \
+    -stream_loop -1 -i "$AUDIO_SOURCE" \
     -vf $LTIME \
-    -acodec libmp3lame -ar 44100 -threads 6 -qscale 3 -b:a 712000 -bufsize 512k \
+    -vcodec h264_omx -s 320*240 \
+    -acodec pcm_s16le \
     -f flv "$YOUTUBE_URL/$YOUTUBE_KEY"
