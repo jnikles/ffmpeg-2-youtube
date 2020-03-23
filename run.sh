@@ -5,6 +5,7 @@ YOUTUBE_URL="rtmp://a.rtmp.youtube.com/live2"
 SOURCE="/dev/video0"              # Source UDP
 AUDIO_SOURCE="/home/pi/ffmpeg-2-youtube/music/silence.mp3"
 FCOLOR=white
+FSIZE=20
 FFILE='/usr/share/fonts/dejavu/DejaVuSansMono-Bold.ttf'
 LTIME=drawtext="fontsize=$FSIZE:fontfile=$FFILE:fontcolor=$FCOLOR:text='%{localtime\:%X}':x=10:y=10"
 
